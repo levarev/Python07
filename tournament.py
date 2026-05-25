@@ -1,7 +1,8 @@
 from ex2.creatures import FlameFactory, AquaFactory
 from ex2.creatures import HealingCreatureFactory, TransformCreatureFactory
 from ex2.utils import NormalStrategy, AggressiveStrategy
-from ex2.utils import DefensiveStrategy, BattleStrategy, Creature
+from ex2.utils import DefensiveStrategy, BattleStrategy
+from ex2.creatures import Creature
 
 
 lst = [(FlameFactory().create_base(), NormalStrategy()),
@@ -10,7 +11,7 @@ lst = [(FlameFactory().create_base(), NormalStrategy()),
        (TransformCreatureFactory().create_base(), AggressiveStrategy())]
 
 
-def battle(opps: list[tuple[Creature, BattleStrategy]]):
+def battle(opps: list[tuple[Creature, BattleStrategy]]) -> None:
     print("*** Tournament ***")
     print(f"{len(opps)} opponents involved")
 

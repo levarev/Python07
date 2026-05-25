@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from .creatures import Creature
 from .creatures import TransformCapability, HealCapability
+from typing import Any
 
 
 class BattleStrategy(ABC):
@@ -9,7 +10,7 @@ class BattleStrategy(ABC):
         pass
 
     @abstractmethod
-    def act(self, Creature):
+    def act(self, Creature: Creature) -> None:
         pass
 
 
@@ -17,7 +18,7 @@ class NormalStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, Creature)
 
-    def act(self, creature: Creature):
+    def act(self, creature: Creature) -> None:
         if self.is_valid(creature) is True:
             print(creature.attack())
         else:
@@ -31,7 +32,7 @@ class AggressiveStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, TransformCapability)
 
-    def act(self, creature):
+    def act(self, creature: Any) -> None:
         if self.is_valid(creature) is True:
             creature.transform()
             print(creature.attack())
@@ -47,7 +48,7 @@ class DefensiveStrategy(BattleStrategy):
     def is_valid(self, creature: Creature) -> bool:
         return isinstance(creature, HealCapability)
 
-    def act(self, creature):
+    def act(self, creature: Any) -> None:
         if self.is_valid(creature) is True:
             print(creature.attack())
             print(creature.heal())

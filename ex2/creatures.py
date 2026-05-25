@@ -3,17 +3,17 @@ from abc import ABC, abstractmethod
 
 class HealCapability(ABC):
     @abstractmethod
-    def heal(self):
+    def heal(self) -> str:
         pass
 
 
 class TransformCapability(ABC):
     @abstractmethod
-    def transform(self):
+    def transform(self) -> None:
         pass
 
     @abstractmethod
-    def revert(self):
+    def revert(self) -> None:
         pass
 
 
@@ -73,32 +73,32 @@ class HealingCreatureFactory(CreatureFactory):
 
 
 class Shiftling(TransformCapability, Creature):
-    def __init__(self):
+    def __init__(self) -> None:
         self.name = "Shiftling"
         self.type = "Normal"
         self.transformation = False
 
-    def attack(self):
+    def attack(self) -> str:
         if self.transformation is False:
             return "Shiftling attacks normally."
         return "Shiftling performs a boosted strike!"
 
-    def transform(self):
+    def transform(self) -> None:
         self.transformation = True
         print("Shiftling shifts into a sharper form!")
 
-    def revert(self):
+    def revert(self) -> None:
         self.transformation = False
         print("Shiftling returns to normal.")
 
 
 class Morphagon(TransformCapability, Creature):
-    def __init__(self):
+    def __init__(self) -> None:
         self.name = "Morphagon"
         self.type = "Normal/Dragon"
         self.transformation = False
 
-    def attack(self):
+    def attack(self) -> str:
         if self.transformation is False:
             return " Morphagon attacks normally."
         return "Morphagon unleashes a devastating morph strike!"
